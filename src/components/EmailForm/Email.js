@@ -9,29 +9,27 @@ const Email = ({ recipients, setRecipients }) => {
 
     const classes = useStyles();
     const [email, setEmail] = useState({
-        subject:'',
+        subject: '',
         body: ''
     });
     const [status, setStatus] = useState({
-        isSending:false,
-        response:'',
-        info:'',
+        isSending: false,
+        response: '',
+        info: '',
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus({...status, isSending:true})
+        setStatus({ ...status, isSending: true })
         try {
-            const res = await axios.post('http://localhost:5000/sendMail',{email, recipients});
-            console.log(res);
-            setStatus({...status, isSending:false, response:'ok',info:'Email Sent Successfully'})
+            const res = await axios.post('http://localhost:5000/sendMail', { email, recipients });
+            setStatus({ ...status, isSending: false, response: 'ok', info: 'Email Sent Successfully' })
             setRecipients([]);
         } catch (error) {
-            console.log(error);
-            setStatus({...status, isSending:false, response:'error',info:'Something Went Wrong, Please try Again'})
+            setStatus({ ...status, isSending: false, response: 'error', info: 'Something Went Wrong, Please try Again' })
         }
         setEmail({
-            subject:'',
+            subject: '',
             body: ''
         })
     }
@@ -79,23 +77,21 @@ const Email = ({ recipients, setRecipients }) => {
                             rows={4}
                         />
 
-                      {
-                          status.isSending &&
-                          <div className={classes.progress}>
-                          <CircularProgress color="secondary" />
-                          </div>
+                        {
+                            status.isSending &&
+                            <div className={classes.progress}>
+                                <CircularProgress color="secondary" />
+                            </div>
 
-                      }
-                      {
-                          status.response === 'ok' &&
-                          <Alert className={classes.alert}  variant='standard' severity="success">{status.info}</Alert>
-                      }
-                      {
-                          status.response === 'error' &&
-                          <Alert className={classes.alert}  variant='standard' severity="error">{status.info}</Alert>
-                      }
-                     
-                        
+                        }
+                        {
+                            status.response === 'ok' &&
+                            <Alert className={classes.alert} variant='standard' severity="success">{status.info}</Alert>
+                        }
+                        {
+                            status.response === 'error' &&
+                            <Alert className={classes.alert} variant='standard' severity="error">{status.info}</Alert>
+                        }
 
                         <Button
                             className={classes.submitButton}

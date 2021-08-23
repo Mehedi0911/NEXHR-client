@@ -20,7 +20,6 @@ export default function ETable({ recipients, setRecipients, employees, loading }
   const handleChecked = (e, email) => {
 
     if (e.target.checked) {
-      console.log("Unchecked");
       setRecipients([...recipients, email])
     } else {
       const newRecipients = recipients.filter((r) => r !== email);

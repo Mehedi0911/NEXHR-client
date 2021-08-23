@@ -32,9 +32,6 @@ const DragDrop = () => {
             }
         })
         setSuccess(`${valid} Employees Created Successfully, ${invalid} invalid entries dropped`)
-        console.log(valid + 'employees created successfully');
-        console.log(invalid + 'invalid entries');
-        console.log(employees);
         setCanAdd(false);
         setFileName(null);
     }

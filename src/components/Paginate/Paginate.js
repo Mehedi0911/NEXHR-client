@@ -2,7 +2,7 @@ import { Button, ButtonGroup } from '@material-ui/core';
 import React, { useState } from 'react';
 
 const Paginate = ({ employeesPerPage, totalEmployees, paginate }) => {
-const [active, setActive] = useState('1');
+
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalEmployees / employeesPerPage); i++) {
